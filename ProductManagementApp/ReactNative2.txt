@@ -1,0 +1,5 @@
+npx create-expo-app@latest NameApp
+
+npx expo install expo-SQLite
+
+npm install @react-native-community/netinfo react-native-toast-message expo-router
