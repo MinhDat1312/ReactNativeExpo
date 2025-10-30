@@ -69,8 +69,9 @@ export async function syncNow() {
 
         // Thêm các category mới trên remote (chưa có local)
         for (const rc of remoteCats) {
-            const local = localCats.find((c) => String(c.remote_id) === String(rc.id));
-            if (!local) {
+            const local = localCats.find((c) => String(c.remote_id) === String(rc.id) );
+            const nameExists = localCats.find((c) => c.name.trim().toLowerCase() === rc.name.trim().toLowerCase());
+            if (!local && !nameExists) {
                 await db.runAsync('INSERT INTO categories (name, remote_id, updated_at) VALUES (?, ?, ?)', [
                     rc.name,
                     String(rc.id),
